@@ -52,7 +52,11 @@ const onSearchFormSubmit = event => {
 
       lightbox.refresh();
 
-      loadMoreButtonEl.style.display = 'block';
+      if (data.hits.length < 15) {
+        loadMoreButtonEl.style.display = 'none';
+      } else {
+        loadMoreButtonEl.style.display = 'block';
+      }
 
       searchFormEl.reset();
     })
@@ -96,6 +100,7 @@ const onLoadMoreClick = () => {
           position: 'topRight',
           message: "We're sorry, but you've reached the end of search results.",
         });
+        loadMoreButtonEl.style.display = 'none';
       }
     })
     .catch(err => {
@@ -114,3 +119,4 @@ const onLoadMoreClick = () => {
 loadMoreButtonEl.addEventListener('click', onLoadMoreClick);
 
 searchFormEl.addEventListener('submit', onSearchFormSubmit);
+

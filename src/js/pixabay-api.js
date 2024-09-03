@@ -27,5 +27,6 @@ export const fetchFotos = async searchedValue => {
     return response.data;
   } catch (error) {
     console.error('Error fetching fotos:', error);
+    throw error;
   }
 };
