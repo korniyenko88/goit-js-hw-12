@@ -18,6 +18,15 @@ const lightbox = new SimpleLightbox('.gallery a', {
   captionDelay: 250,
 });
 
+// Функція для перевірки та ховання кнопки "Load More"
+const toggleLoadMoreButton = hits => {
+  if (hits.length < 15) {
+    loadMoreButtonEl.style.display = 'none'; // Якщо менше 15, ховати кнопку
+  } else {
+    loadMoreButtonEl.style.display = 'block'; // Інакше показати
+  }
+};
+
 const onSearchFormSubmit = event => {
   event.preventDefault();
   searchedValue = searchFormEl.elements.user_query.value.trim();
@@ -51,12 +60,7 @@ const onSearchFormSubmit = event => {
       galleryEl.innerHTML = galleryCardTemplate;
 
       lightbox.refresh();
-
-      if (data.hits.length < 15) {
-        loadMoreButtonEl.style.display = 'none';
-      } else {
-        loadMoreButtonEl.style.display = 'block';
-      }
+      toggleLoadMoreButton(data.hits); // Перевірка для кнопки "Load More"
 
       searchFormEl.reset();
     })
@@ -93,14 +97,14 @@ const onLoadMoreClick = () => {
           behavior: 'smooth',
         });
 
-        
+        toggleLoadMoreButton(data.hits); // Перевірка для кнопки "Load More"
       } else {
         iziToast.info({
           title: 'Info',
           position: 'topRight',
           message: "We're sorry, but you've reached the end of search results.",
         });
-        loadMoreButtonEl.style.display = 'none';
+        loadMoreButtonEl.style.display = 'none'; // Ховати кнопку якщо немає більше карток
       }
     })
     .catch(err => {
@@ -117,6 +121,4 @@ const onLoadMoreClick = () => {
 };
 
 loadMoreButtonEl.addEventListener('click', onLoadMoreClick);
-
 searchFormEl.addEventListener('submit', onSearchFormSubmit);
-
