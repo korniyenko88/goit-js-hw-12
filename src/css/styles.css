@@ -66,7 +66,6 @@
   font-family: 'Montserrat', sans-serif;
 }
 .load-button {
-  
   margin: 0 auto;
   display: flex;
   align-items: center;
@@ -88,7 +87,6 @@
   margin-top: 20px;
 }
 .gallery {
-  
   width: 1200px;
   display: flex;
   flex-wrap: wrap;
@@ -121,7 +119,6 @@ img {
   font-size: 0.7em;
 }
 
-
 .gallery-card {
   display: flex;
   flex-direction: row;
@@ -137,34 +134,56 @@ img {
   border-left: 1px solid #808080;
   border-right: 1px solid #808080;
 }
+.loader-position {
+  display: flex;
+  justify-content: center;
+}
+
 .loader {
-  margin-left: 700px;
   width: 48px;
-  height: 48px;
-  border-radius: 50%;
+  height: 24px;
   display: inline-block;
   position: relative;
-  background: linear-gradient(0deg, rgba(255, 61, 0, 0.2) 33%, #ff3d00 100%);
-  box-sizing: border-box;
-  animation: rotation 1s linear infinite;
+  border: 1px solid rgb(56, 53, 53);
 }
 .loader::after {
-  content: '';
+  content: '';  
   box-sizing: border-box;
   position: absolute;
-  left: 50%;
+  left: 100%;
   top: 50%;
-  transform: translate(-50%, -50%);
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  background: #263238;
+  transform: translateY(-50%);
+  border: 1px solid rgb(56, 53, 53);
+  width: 5px;
+  height: 12px;
 }
-@keyframes rotation {
+.loader::before {
+  content: '';  
+  position: absolute;
+  left: -8px;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 80%;
+  width: 6px;
+  box-sizing: border-box;
+  animation: animloader  2s linear infinite;
+}
+
+@keyframes animloader {
   0% {
-    transform: rotate(0deg);
+    box-shadow: 11px 0 rgba(255, 255, 255, 0), 22px 0 rgba(255, 255, 255, 0), 33px 0 rgba(255, 255, 255, 0), 44px 0 rgba(255, 255, 255, 0);
+  }
+  25% {
+    box-shadow: 11px 0 rgb(56, 53, 53), 22px 0 rgba(255, 255, 255, 0), 33px 0 rgba(255, 255, 255, 0), 44px 0 rgba(255, 255, 255, 0);
+  }
+  50% {
+    box-shadow: 11px 0 rgb(56, 53, 53), 22px 0 rgb(56, 53, 53), 33px 0 rgba(255, 255, 255, 0), 44px 0 rgba(255, 255, 255, 0);
+  }
+  75% {
+    box-shadow: 11px 0 rgb(56, 53, 53), 22px 0 rgb(56, 53, 53), 33px 0 rgb(56, 53, 53), 44px 0 rgba(255, 255, 255, 0);
   }
   100% {
-    transform: rotate(360deg);
+    box-shadow: 11px 0 rgb(56, 53, 53), 22px 0 rgb(56, 53, 53), 33px 0 rgb(56, 53, 53), 44px 0 rgb(56, 53, 53);
   }
 }
+    
