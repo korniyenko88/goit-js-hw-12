@@ -18,12 +18,12 @@ const lightbox = new SimpleLightbox('.gallery a', {
   captionDelay: 250,
 });
 
-// Функція для перевірки та ховання кнопки "Load More"
+
 const toggleLoadMoreButton = hits => {
   if (hits.length < 15) {
-    loadMoreButtonEl.style.display = 'none'; // Якщо менше 15, ховати кнопку
+    loadMoreButtonEl.style.display = 'none';
   } else {
-    loadMoreButtonEl.style.display = 'block'; // Інакше показати
+    loadMoreButtonEl.style.display = 'block';
   }
 };
 
@@ -60,7 +60,7 @@ const onSearchFormSubmit = event => {
       galleryEl.innerHTML = galleryCardTemplate;
 
       lightbox.refresh();
-      toggleLoadMoreButton(data.hits); // Перевірка для кнопки "Load More"
+      toggleLoadMoreButton(data.hits); 
 
       searchFormEl.reset();
     })
@@ -97,14 +97,14 @@ const onLoadMoreClick = () => {
           behavior: 'smooth',
         });
 
-        toggleLoadMoreButton(data.hits); // Перевірка для кнопки "Load More"
+        toggleLoadMoreButton(data.hits); 
       } else {
         iziToast.info({
           title: 'Info',
           position: 'topRight',
           message: "We're sorry, but you've reached the end of search results.",
         });
-        loadMoreButtonEl.style.display = 'none'; // Ховати кнопку якщо немає більше карток
+        loadMoreButtonEl.style.display = 'none'; 
       }
     })
     .catch(err => {
